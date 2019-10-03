@@ -1,5 +1,5 @@
-(add-to-list 'default-frame-alist '(font . "Liberation Mono-8"))
-(set-face-attribute 'default t :font "Liberation Mono-8")
+(add-to-list 'default-frame-alist '(font . "Liberation Mono-7"))
+(set-face-attribute 'default t :font "Liberation Mono-7")
 ;(set-face-attribute 'default nil :font "Liberation Mono-8")
 ;(set-frame-font FONT nil t)
 
@@ -70,6 +70,11 @@
   :config
   (evil-mode 1))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+(use-package yasnippet-snippets)
+
 (use-package company
   :config
   (global-company-mode 1))
@@ -129,7 +134,7 @@
    "C-h f" #'counsel-describe-function)
   (general-define-key
    :states '(insert)
-   "C-SPC" #'company-complete)
+   "TAB" #'(lambda () (interactive) (or (yas-expand) (company-complete) (indent-for-tab-command))))
   (general-define-key
    :states '(normal visual emacs)
    :prefix "SPC"
